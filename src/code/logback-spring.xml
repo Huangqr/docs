@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <!-- 上下文名称 -->
+    <contextName>SpringBootDemo</contextName>
+    <property name="projectName" value="market-service"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{35}] [ %msg] %n-->
+            <pattern>%yellow([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %highlight([%-5level])  %green([%logger{35}]) %cyan([ %msg]) %n
+            </pattern>
+            <!-- <charset>GBK</charset> -->
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+    <!-- 获取时间戳字符串 -->
+
+    <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>base-service/file-${bySecond}.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">GBK</charset>
+        </encoder>
+    </appender>-->
+    <!-- 滚动文件 -->
+    <appender name="INFO"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/info.log</file>
+        <!--<springProfile name="dev">
+        </springProfile>
+        <springProfile name="test,prod">
+        <file>/root/app/logs/${projectName}/info.log</file>
+        </springProfile>-->
+        <!-- 当发生滚动时，决定RollingFileAppender的行为 TimeBasedRollingPolicy(根据时间来制定滚动策略) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/logFile-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件 -->
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <!-- 以上配置表示每天生成一个日志文件，保存30天的日志文件 -->
+        <!--级别过滤器,根据日志级别进行过滤,如果日志级别等于配置级别,过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>   <!-- 设置过滤级别 -->
+            <!-- ACCEPT，日志会被立即处理，不再经过剩余过滤器 -->
+            <onMatch>ACCEPT</onMatch>  <!-- 配置符合过滤条件的操作 -->
+            <!-- DENY，日志将立即被抛弃不再经过其他过滤器 -->
+            <onMismatch>DENY</onMismatch>  <!-- 配置不符合过滤条件的操作 -->
+            <!-- NEUTRAL，有序列表里的下个过滤器过接着处理日志 -->
+        </filter>
+        <encoder>
+            <!--<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{35}] [ %msg] %n-->
+            <pattern>%yellow([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %highlight([%-5level])  %green([%logger{35}]) %cyan([ %msg]) %n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ERROR"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/error.log</file>
+        <!--<springProfile name="dev">
+        </springProfile>
+        <springProfile name="test,prod">
+        <file>/root/app/logs/${projectName}/error.log</file>
+        </springProfile>-->
+        <!-- 当发生滚动时，决定RollingFileAppender的行为 TimeBasedRollingPolicy(根据时间来制定滚动策略) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/logFile-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件 -->
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <!-- 以上配置表示每天生成一个日志文件，保存30天的日志文件 -->
+        <!--级别过滤器,根据日志级别进行过滤,如果日志级别等于配置级别,过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>   <!-- 设置过滤级别 -->
+            <!-- ACCEPT，日志会被立即处理，不再经过剩余过滤器 -->
+            <onMatch>ACCEPT</onMatch>  <!-- 配置符合过滤条件的操作 -->
+            <!-- DENY，日志将立即被抛弃不再经过其他过滤器 -->
+            <onMismatch>DENY</onMismatch>  <!-- 配置不符合过滤条件的操作 -->
+            <!-- NEUTRAL，有序列表里的下个过滤器过接着处理日志 -->
+        </filter>
+        <encoder>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{35} - %msg%n-->
+            <pattern>%yellow([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %highlight([%-5level])  %green([%logger{35}]) %cyan([ %msg]) %n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="DEBUG"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/debug.log</file>
+        <!--<springProfile name="dev">
+        <file>../logs/debug.log</file>
+        </springProfile>
+        <springProfile name="test,prod">
+        <file>/root/app/logs/${projectName}/debug.log</file>
+        </springProfile>-->
+        <!-- 当发生滚动时，决定RollingFileAppender的行为 TimeBasedRollingPolicy(根据时间来制定滚动策略) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/logFile-debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件 -->
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <!-- 以上配置表示每天生成一个日志文件，保存30天的日志文件 -->
+        <!--级别过滤器,根据日志级别进行过滤,如果日志级别等于配置级别,过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>   <!-- 设置过滤级别 -->
+            <!-- ACCEPT，日志会被立即处理，不再经过剩余过滤器 -->
+            <onMatch>ACCEPT</onMatch>  <!-- 配置符合过滤条件的操作 -->
+            <!-- DENY，日志将立即被抛弃不再经过其他过滤器 -->
+            <onMismatch>DENY</onMismatch>  <!-- 配置不符合过滤条件的操作 -->
+            <!-- NEUTRAL，有序列表里的下个过滤器过接着处理日志 -->
+        </filter>
+        <encoder>
+            <!--<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%logger{35}] [ %msg] %n-->
+            <pattern>%yellow([%d{yyyy-MM-dd HH:mm:ss.SSS}]) %highlight([%-5level])  %green([%logger{35}]) %cyan([ %msg]) %n
+            </pattern>
+        </encoder>
+    </appender>
+    <!-- mybatis日志文件配置 -->
+    <!--<logger name="org.mybatis" additivity="false" level="debug">
+        <appender-ref ref="mybatis"/>
+    </logger>
+    <logger name="org.apache.ibatis" additivity="false" level="debug">
+        <appender-ref ref="mybatis"/>
+    </logger>
+    <logger name="java.sql.Connection" additivity="false" level="debug">
+        <appender-ref ref="mybatis"/>
+        <appender-ref ref="mybatis" />
+    </logger>
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" >
+    </logger>
+    <logger name="org.apache.ibatis.jdbc.ScriptRunner" level="DEBUG" >
+        <appender-ref ref="mybatis"/>
+    </logger>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >
+        <appender-ref ref="mybatis"/>
+    </logger>
+    <logger name="java.sql.PreparedStatement" additivity="false" level="debug">
+        <appender-ref ref="mybatis"/>
+    </logger>
+    <logger name="java.sql.Statement" additivity="false" level="debug">
+        <appender-ref ref="mybatis"/>
+    </logger>-->
+    <logger name="com.holderzone.market.mapper" additivity="false">
+        <level>debug</level>
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="DEBUG"/>
+        <!--<appender-ref ref="FILE"/>-->
+        <!--<appender-ref ref="mybatis"/>-->
+    </root>
+   <!-- <springProfile name="dev">
+    </springProfile>
+    <springProfile name="test">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="DEBUG"/>
+            &lt;!&ndash;<appender-ref ref="FILE"/>&ndash;&gt;
+            &lt;!&ndash;<appender-ref ref="mybatis"/>&ndash;&gt;
+        </root>
+    </springProfile>-->
+</configuration>

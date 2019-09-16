@@ -1,0 +1,12 @@
+version: '3'
+services:
+  elasticsearch:
+    image: "elasticsearch:5.6.4"
+    container_name: "holder-es"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./config/:/usr/share/elasticsearch/config
+      - ./data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs

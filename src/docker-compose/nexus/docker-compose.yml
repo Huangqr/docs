@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nexus3:
+    image: "sonatype/nexus3"
+    container_name: "nexus-docker"
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./nexus-data:/nexus-data
+    networks:
+      mynet:
+        ipv4_address: 172.26.238.108
+
+networks:
+  mynet:
+    external:
+      name: holder-network

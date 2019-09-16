@@ -1,0 +1,13 @@
+version: '3'
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "holder-rabbitmq"
+    hostname: "my-rabbit"
+    privileged: true
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./data:/var/lib/rabbitmq:Z
+      - ./config/:/etc/rabbitmq/:Z

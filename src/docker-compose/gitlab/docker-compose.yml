@@ -1,0 +1,25 @@
+version: '3'
+services:
+  gitlab:
+    image: "gitlab/gitlab-ce"
+    container_name: "holder-gitlab"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.100.135'
+        gitlab_rails['gitlab_shell_ssh_port'] = 10022 
+    ports:
+      - "80:80"
+      - "10443:443"
+      - "10022:22"
+    volumes:
+      - ./srv/gitlab/config:/etc/gitlab
+      - ./srv/gitlab/logs:/var/log/gitlab
+      - ./srv/gitlab/data:/var/opt/gitlab
+    networks:
+      mynet:
+        ipv4_address: 172.26.238.10
+
+networks:
+  mynet:
+    external:
+      name: holder-network

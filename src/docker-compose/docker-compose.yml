@@ -1,0 +1,44 @@
+version: '3'
+services:
+  apollo-configservice: 
+    container_name: apollo-configservice                      
+    build: apollo-configservice/               
+    image: apollo-configservice:0.9.0                         
+    ports:
+      - "8080:8080"    
+    volumes:
+      - "/Users/mobin/opt/logs/100003171:/opt/logs/100003171"    
+    environment:
+      - spring_datasource_url=jdbc:mysql://localhost:3306/ApolloConfigDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+
+  apollo-adminservice:
+    container_name: apollo-adminservice
+    build: apollo-adminservice/
+    image: apollo-adminservice:0.9.0
+    ports:
+      - "8090:8090"
+    depends_on:
+      - apollo-configservice
+    volumes:
+      - "/Users/mobin/opt/logs/100003172:/opt/logs/100003172"
+    environment:
+      - spring_datasource_url=jdbc:mysql://localhost:3306/ApolloConfigDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=root
+
+  apollo-portal:
+    container_name: apollo-portal
+    build: apollo-portal/
+    image: apollo-portal:0.9.0
+    ports:
+      - "8070:8070"
+    depends_on:
+      - apollo-adminservice
+    volumes:
+      - "/Users/mobin/opt/logs/100003173:/opt/logs/100003173"
+    environment:
+      - spring_datasource_url=jdbc:mysql://localhost:3306/ApolloPortalDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=root

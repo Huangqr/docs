@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mysql:
+    image: "mysql"
+    container_name: "holder-mysql-es"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysqlES
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./datadir:/var/lib/mysql
+      - ./timezone/PRC:/etc/localtime
+      - ./config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
