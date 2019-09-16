@@ -39,3 +39,5 @@
        在git里配置
       
        $ git config http.sslVerify "false" 或者 $ git config --global http.sslVerify "false"
+       $ git config http.postBuffer 524288000  |  git config https.postBuffer 524288000
+       $ git pull origin master --allow-unrelated-histories 拉取出错
