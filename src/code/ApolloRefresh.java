@@ -10,11 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-/**
- * @author HuChiHui
- * @date 2019/09/16 下午 14:02
- * @description
- */
 @Component
 public class ApolloRefresh implements ApplicationContextAware {
 
