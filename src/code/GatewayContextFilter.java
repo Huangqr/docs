@@ -21,11 +21,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-/**
- * @author HuChiHui
- * @date 2019/06/03 下午 18:28
- * @description
- */
 @Component
 public class GatewayContextFilter implements GlobalFilter, Ordered {
 
