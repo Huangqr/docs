@@ -41,3 +41,11 @@
        $ git config http.sslVerify "false" 或者 $ git config --global http.sslVerify "false"
        $ git config http.postBuffer 524288000  |  git config https.postBuffer 524288000
        $ git pull origin master --allow-unrelated-histories 拉取出错
+
+    14.git tag tagName  打标签（git tag -a tagName -m "my version 1.4"）
+       git tag  列出所有标签
+       git push origin --tags   推送所有tag到远程仓库(git push origin tagName    推送单一标签)
+       git tag -l 'v1.8.5*'     查找标签
+       git tag -d tagName       删除标签
+       git push origin :refs/tags/tagName       删除远程标签
+       git tag -a tagName 9fceb02(提交的校验和)       指定提交记录打标签
