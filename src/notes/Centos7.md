@@ -58,6 +58,9 @@
     consul agent -dev -ui -node=consul-dev -client=10.39.45.56
     consul agent -data-dir /tmp/node0 -node=node0 -bind=10.39.45.56 -datacenter=dc1 -ui -client=10.39.45.56 -server -bootstrap-expect 1
 
+	docker pull consul
+	docker run -d --name consul --privileged=true -p 8400:8400 -p 8500:8500 -p 8600:53/udp -u root  -v /data/consul:/consul/data consul agent -dev -ui -node=consul-dev -client=0.0.0.0
+
 **yum**
    
     yum install -y lrzsz        上传下载工具
@@ -92,4 +95,12 @@
     zipkin安装：
     docker pull zipkin
     docker run --name zipkin -d -p 9411:9411 openzipkin/zipkin
+    
+    mongoDB安装：
+    docker pull mongo:latest
+    docker run -itd --name mongo -p 27017:27017 mongo --auth
+    设置账号：
+        docker exec -it mongo mongo admin
+        db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
+        db.auth('admin', '123456')
 
