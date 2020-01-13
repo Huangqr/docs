@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  consul:
+    image: consul:latest
+    hostname: "consul"
+    container_name: "consul"
+    ports:
+      - "8500:8500"
+    privileged: true
+    volumes:
+      - ./data:/consul/data
+    command: "agent -server -bootstrap-expect 1 -ui -disable-host-node-id -client 0.0.0.0"
