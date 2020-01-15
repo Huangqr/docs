@@ -75,6 +75,9 @@
 
     Docker修改容器名称：
     Docker rename <原名称> <新名称>
+
+	如果创建时未指定 --restart=always ,可通过update 命令设置（容器自启动）
+	docker update --restart=always <容器名称>
     
     Docker时间和主机时间不一致加下列参数
     -v /etc/localtime:/etc/localtime
@@ -101,6 +104,6 @@
     docker run -itd --name mongo -p 27017:27017 mongo --auth
     设置账号：
         docker exec -it mongo mongo admin
-        db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
+		db.createUser({user:"admin",pwd:"123456",roles:[{role: 'root', db: 'admin'}]})
         db.auth('admin', '123456')
 
