@@ -110,6 +110,31 @@
         实时刷新配置方式：
         @RefreshScope   或   @ConfigurationProperties文件可自动刷新
 
+**配置管理**
+
+- 配置
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <version>${spring-cloud-starter.version}</version>
+        </dependency>
+
+        Ribbon 中有两种和时间相关的设置，分别是请求连接的超时时间和请求处理的超时时间，设置规则如下：
+        # 请求连接的超时时间
+        ribbon.ConnectTimeout=2000
+        # 请求处理的超时时间
+        ribbon.ReadTimeout=5000
+        
+        也可以为每个Ribbon客户端设置不同的超时时间, 通过服务名称进行指定：
+        <服务名>.ribbon.ConnectTimeout=2000
+        <服务名>.ribbon.ReadTimeout=5000
+        
+        并发参数
+        # 最大连接数
+        ribbon.MaxTotalConnections=500
+        # 每个host最大连接数
+        ribbon.MaxConnectionsPerHost=500
 
 
 					
