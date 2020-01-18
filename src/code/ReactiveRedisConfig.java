@@ -19,12 +19,21 @@ public class RedisConfig {
 
     @Bean
     ReactiveRedisTemplate reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
-        return new ReactiveRedisTemplate(factory, redisSerializationContext());
+        return new ReactiveRedisTemplate(factory, redisSerializationContext1());
     }
 
     @Bean
     RedisSerializationContext redisSerializationContext() {
         return new MyRedisSerialization();
+    }
+
+    @Bean
+    RedisSerializationContext redisSerializationContext1() {
+        return RedisSerializationContext.newSerializationContext()
+                .key(jackson2JsonRedisSerializer())
+                .string(new StringRedisSerializer())
+                .value(jackson2JsonRedisSerializer())
+                .build();
     }
 
     class MyRedisSerialization implements RedisSerializationContext {
