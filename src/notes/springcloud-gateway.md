@@ -93,6 +93,36 @@
 		    }
 		}
 
+		/** 跳过前缀的filter，如/test1/a,经过拦截器后变为/a */
+		public class StripPrefixFilter implements GlobalFilter, Ordered {
+		    private static final Logger log = LoggerFactory.getLogger(StripPrefixFilter.class);
+
+		    /** 跳过前缀的数量 */
+		    private static final Integer STRIP_PREFIX_COUNT = 1;
+		
+		    /** filter的顺序 */
+		    private static final Integer ORDER = 16;
+		
+		    @Override
+		    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		        ServerHttpRequest request = exchange.getRequest();
+		        addOriginalRequestUrl(exchange, request.getURI());
+		        String path = request.getURI().getRawPath();
+		        String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(path, "/"))
+		                .skip(STRIP_PREFIX_COUNT).collect(Collectors.joining("/"));
+		        ServerHttpRequest newRequest = request.mutate()
+		                .path(newPath)
+		                .build();
+		        exchange.getAttributes().put(GATEWAY_REQUEST_URL_ATTR, newRequest.getURI());
+		        return chain.filter(exchange.mutate().request(newRequest).build());
+		    }
+		
+		    @Override
+		    public int getOrder() {
+		        return Ordered.HIGHEST_PRECEDENCE + ORDER * 1000;
+		    }
+		}
+
 - 重写requestBody
 
 		参考ModifyRequestBodyGatewayFilterFactory
