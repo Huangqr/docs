@@ -108,3 +108,6 @@
 		db.createUser({user:"admin",pwd:"123456",roles:[{role: 'userAdminAnyDatabase', db: 'admin'},{role: 'readWrite', db: 'admin'}]})
         db.auth('admin', '123456')
 
+**Docker镜像加速地址**
+
+	docker pull dockerhub.azk8s.cn/xxx/xxx:yyy
