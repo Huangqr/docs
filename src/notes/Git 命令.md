@@ -49,3 +49,18 @@
        git tag -d tagName       删除标签
        git push origin :refs/tags/tagName       删除远程标签
        git tag -a tagName 9fceb02(提交的校验和)       指定提交记录打标签
+
+
+	15.强制回退版本
+	   1、通过 git log   确定需要回滚到 某个提交的 commit id
+	   2、git reset --soft commit_id   
+	      //--soft 只回滚提交，不会删除提交记录，辛苦编写的代码功能还依然存在；--hard 则把提交记录和已经辛苦编写的代码彻底回滚删除
+       3、强制提交，覆盖远程git 源码库的代码
+          git push -f
+
+	16.git设置远程仓库地址
+	   $ git remote add origin https://github.com/xxx/xxx.git
+	   fatal: remote origin already exists.
+
+	   git remote rm origin
+	   git remote add origin https://github.com/xxx/xxx.git
