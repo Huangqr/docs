@@ -111,3 +111,9 @@
 **Docker镜像加速地址**
 
 	docker pull dockerhub.azk8s.cn/xxx/xxx:yyy
+	
+**CentOS**
+
+    设置服务开机启动
+    systemctl enable <serverName>
+    systemctl daemon-reload
