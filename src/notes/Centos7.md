@@ -89,7 +89,7 @@
 
     RabbitMQ安装
     docker pull rabbitmq: management
-    启动容器：docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password -p 15672:15672 -p 5672:5672 rabbitmq:management
+    启动容器：docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=000000 -p 15672:15672 -p 5672:5672 rabbitmq:management
 
     Redis安装:
     Docker pull redis:4.0
