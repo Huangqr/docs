@@ -89,7 +89,7 @@
 
     RabbitMQ安装
     docker pull rabbitmq: management
-    启动容器：docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=000000 -p 15672:15672 -p 5672:5672 rabbitmq:management
+    启动容器：docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=root -p 15672:15672 -p 5672:5672 rabbitmq:management
 
     Redis安装:
     Docker pull redis:4.0
@@ -111,6 +111,13 @@
 **Docker镜像加速地址**
 
 	docker pull dockerhub.azk8s.cn/xxx/xxx:yyy
+	
+**Docker-compose**
+
+    https://github.com/docker/compose/releases/ docker-compose版本选择地址
+    
+    curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
 	
 **CentOS**
 
