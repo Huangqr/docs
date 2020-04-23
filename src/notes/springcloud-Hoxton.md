@@ -144,6 +144,8 @@
         解决办法：
         修改项目下 .idea\workspace.xml，找到标签 <component name="PropertiesComponent"> 
         在标签里加一行 <property name="dynamic.classpath" value="true"/>
+        
+        或者修改 Edit Configuration 中 Shorten common line （选择 JAR manifset）
     
     
 					
