@@ -2,9 +2,12 @@
 
 **权限设置**
 
-    use db
+    use admin
     db.createUser({user:"admin",pwd:"123456",roles:[{role: 'userAdminAnyDatabase', db: 'admin'},{role: 'readWrite', db: 'admin'}]})
     db.auth('admin', '123456')
+    
+    创建超级用户中的超级用户
+    db.createUser({user:"root",pwd:"root",roles:["root"]}) 
             
     Read：允许用户读取指定数据库
     readWrite：允许用户读写指定数据库
@@ -20,7 +23,7 @@
 **数据类型**
 
 | 数据类型 | 描述 |
-|:-----------|:------:|
+|:-----------|:------|
 | String | 字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的 |
 | Integer | 整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位 |
 | Boolean | 布尔值。用于存储布尔值（真/假） |
