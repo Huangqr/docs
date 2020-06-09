@@ -107,6 +107,9 @@
         use db
 		db.createUser({user:"admin",pwd:"123456",roles:[{role: 'userAdminAnyDatabase', db: 'admin'},{role: 'readWrite', db: 'admin'}]})
         db.auth('admin', '123456')
+        
+     zookeeper:
+     docker run --privileged=true -d --name zookeeper --publish 2181:2181  -d zookeeper:latest
 
 **Docker镜像加速地址**
 
