@@ -127,3 +127,24 @@
     设置服务开机启动
     systemctl enable <serverName>
     systemctl daemon-reload
+
+
+**History**
+	
+	显示操作时间/操作账号/IP
+
+	vim /etc/bashrc
+
+	在最后加上
+
+	HISTFILESIZE=4000 #默认保存命令是1000条，这里修改为4000条
+	HISTSIZE=4000
+	USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'` #取得登录客户端的IP
+	if [ -z $USER_IP ]
+	then
+	USER_IP=`hostname`
+	fi
+	HISTTIMEFORMAT="%F %T $USER_IP:`whoami` " #设置新的显示history的格式
+	export HISTTIMEFORMAT
+
+	source /etc/bashrc
