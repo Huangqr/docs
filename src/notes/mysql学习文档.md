@@ -41,4 +41,8 @@ WHERE (FIND_IN_SET(fid, @pv) > 0 And @pv := concat(@pv, ',', guid))
     CALL alter_table_column();
     DROP PROCEDURE alter_table_column;
 
+**数据库备份**
+
+	mysqldump -uroot -ppassword datasourceName > /root/datasourceName.sql
+
 		
