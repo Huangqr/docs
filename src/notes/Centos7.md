@@ -75,6 +75,8 @@
 
     Docker修改容器名称：
     Docker rename <原名称> <新名称>
+	
+	docker exec -it <容器ID> bin/bash/
 
 	如果创建时未指定 --restart=always ,可通过update 命令设置（容器自启动）
 	docker update --restart=always <容器名称>
@@ -90,6 +92,9 @@
     RabbitMQ安装
     docker pull rabbitmq: management
     启动容器：docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=root -p 15672:15672 -p 5672:5672 rabbitmq:management
+	rabbitmqctl add_user username pwd  //添加用户，后面两个参数分别是用户名和密码
+	rabbitmqctl set_permissions -p / username ".*" ".*" ".*"  //添加权限
+	rabbitmqctl set_user_tags username administrator  //修改用户角色,将用户设为管理员
 
     Redis安装:
     Docker pull redis:4.0
