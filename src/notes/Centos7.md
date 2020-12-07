@@ -153,3 +153,11 @@
 	export HISTTIMEFORMAT
 
 	source /etc/bashrc
+
+**file**
+
+	ls -li //列出文件节点
+
+	find ./ -inum XXX（节点号） -print -exec rm -rf {} \;   //删除节点号文件
+
+	find ./ -inum XXX（节点号） -exec mv {} file.txt \;     //其实我们还可以执行这个命令，修改乱码文件名为正常文件名
