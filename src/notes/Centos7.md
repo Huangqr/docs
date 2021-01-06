@@ -100,6 +100,9 @@
     Docker pull redis:4.0
     docker run -d -p 6379:6379 -it -v redis.conf:/etc/redis/redis.conf --name redis redis:4.0 redis-server /etc/redis/redis.conf
 
+	mysql:
+	docker run --name mysql -d -p 3306:3306 -v ${PWD}/mysql:/val/lib/mysql -e MYSQL_ROOT_PASSWORD="123456" mysql
+
     zipkin安装：
     docker pull zipkin
     docker run --name zipkin -d -p 9411:9411 openzipkin/zipkin
