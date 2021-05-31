@@ -923,7 +923,13 @@
 
 		文档地址:https://www.elastic.co/guide/cn/elasticsearch/guide/current/near-real-time.html
  
-			
 
+**问题**
+
+
+	1、Elasticsearch exception [type=illegal_argument_exception, reason=Fielddata is disabled on text fields by default. Set fielddata=true on [typename] in order to load fielddata in memory by uninverting the inverted index
 		
+	解决：	
+	curl -i -H "Content-Type:application/json" -XGET 127.0.0.1:9200/nc_baseisv/_mapping/?pretty
+	curl -i -H "Content-Type:application/json" -XPUT 127.0.0.1:9200/nc_baseisv/_mapping/doc/?pretty  -d'{"doc":{"properties":{"typename":{"type":"text","fielddata":true}}}}'
 		    
