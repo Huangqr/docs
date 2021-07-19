@@ -47,6 +47,16 @@
           查看日志：tail -f ~/logs/rocketmqlogs/broker.log
           启动成功：register broker
 
+	docker版:
+
+	docker run -d -p 9876:9876 -v /usr/local/mq/data/namesrv/logs:/root/logs -v /usr/local/mq/data/namesrv/store:/root/store --name rmqnamesrv -e "MAX_POSSIBLE_HEAP=100000000" rocketmqinc/rocketmq sh mqnamesrv
+
+	docker run -d -p 10911:10911 -p 10909:10909 -v /usr/local/mq/data/broker/logs:/root/logs -v /usr/local/mq/rocketmq/data/broker/store:/root/store -v /usr/local/mq/conf/broker.conf:/opt/rocketmq/conf/broker.conf --name rmqbroker --link rmqnamesrv:namesrv -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq/conf/broker.conf
+	
+	docker pull styletang/rocketmq-console-ng
+	
+	docker run -e "JAVA_OPTS=-Drocketmq.namesrv.addr=xxx.xxx.xxx.xx:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" -p 8085:8080 -t styletang/rocketmq-console-ng
+
 **Consul**
    
 	mkdir consul
